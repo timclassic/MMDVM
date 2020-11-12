@@ -33,15 +33,19 @@ const struct TONE_TABLE {
   {1633U, 15U, 146118367},
   {1247U, 19U, 111579672},
   {1039U, 23U, 93012886},
-  {956U,  25U, 85541432}};
+  {956U,  25U, 85541432},
+  {500U,  48U, 44739243}};
 
-const uint8_t TONE_TABLE_DATA_LEN = 6U;
+const uint8_t TONE_TABLE_DATA_LEN = 7U;
+
+const uint8_t LEVEL_FM = 128 * 12;
+const uint8_t LEVEL_DSTAR = 841;
 
 CCalFM::CCalFM() :
 m_frequency(0),
 m_length(0),
 m_tone(NULL),
-m_level(128 * 12),
+m_level(LEVEL_FM),
 m_transmit(false),
 m_audioSeq(0),
 m_lastState(STATE_IDLE)
@@ -57,24 +61,35 @@ void CCalFM::process()
     switch (m_modemState) {
         case STATE_FMCAL10K:
           m_frequency = 956U;
+          m_level = LEVEL_FM;
           break;
         case STATE_FMCAL12K:
           m_frequency = 1039U;
+          m_level = LEVEL_FM;
           break;
         case STATE_FMCAL15K:
           m_frequency = 1247U;
+          m_level = LEVEL_FM;
           break;
         case STATE_FMCAL20K:
           m_frequency = 1633U;
+          m_level = LEVEL_FM;
           break;
         case STATE_FMCAL25K:
           m_frequency = 2079U;
+          m_level = LEVEL_FM;
           break;
         case STATE_FMCAL30K:
           m_frequency = 2495U;
+          m_level = LEVEL_FM;
+          break;
+        case STATE_FMDSTARCAL:
+          m_frequency = 500U;
+          m_level = LEVEL_DSTAR;
           break;
         default:
           m_frequency = 0U;
+          m_level = LEVEL_FM;
           break;
     }
 

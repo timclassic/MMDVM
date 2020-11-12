@@ -34,6 +34,7 @@ public:
   void fm20kcal();
   void fm25kcal();
   void fm30kcal();
+  void dstarcal();
 
   uint8_t write(const uint8_t* data, uint8_t length);
 
