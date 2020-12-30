@@ -128,7 +128,7 @@ void loop()
   if (m_modemState == STATE_POCSAGCAL)
     calPOCSAG.process();
 
-  if (m_modemState == STATE_FMCAL10K || m_modemState == STATE_FMCAL12K || m_modemState == STATE_FMCAL15K || m_modemState == STATE_FMCAL20K || m_modemState == STATE_FMCAL25K ||m_modemState == STATE_FMCAL30K)
+  if (m_modemState == STATE_FMCAL10K || m_modemState == STATE_FMCAL12K || m_modemState == STATE_FMCAL15K || m_modemState == STATE_FMCAL20K || m_modemState == STATE_FMCAL25K || m_modemState == STATE_FMCAL30K || m_modemState == STATE_FMDSTARCAL)
     calFM.process();
 
   if (m_modemState == STATE_IDLE)
